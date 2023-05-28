@@ -1,0 +1,78 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<!-- Adam -->
+<h1>Create Quotation</h1>
+
+<div>
+    <form  method="POST" action ="" id="qform">
+        {%csrf_token%}
+        <div>
+          <label>Quotation Number</label>
+          {{ quotationform.quotation_number}}
+        </div>
+        <div>
+          <label>Valid Date</label>
+          {{ quotationform.valid_date}}
+        </div>
+        
+        <div class="form-group row">
+          <div class="col-md-2">
+              <label  class="col-form-label">Product Name</label>
+              {{ quotationform.product_name }}
+          </div>
+          <div class="col-md-2">
+              <label  class="col-form-label">Product Description</label>
+              {{ quotationform.product_description }}
+          </div>
+          <div class="col-md-2">
+              <label class="col-form-label">Product Price</label>
+              {{ quotationform.product_price }}
+          </div>
+          <div class="col-md-2">
+              <label  class="col-form-label">Product Quantity</label>
+              {{ quotationform.product_quantity }}
+          </div>
+          <div class="col-md-2">
+            <input type="submit" form="qform" name="submitButton" value="Add Product">
+          </div>
+      </div>
+    </form>
+</div>
+
+  
+<table class="table table-striped">
+    <tr>
+      <th>name</th>
+      <th>description</th>
+      <th>price</th>
+      <th>quantity</th>
+      <th>Total price</th>
+    </tr>
+
+    {{TotalPrice}}
+    {% for product in products %}
+    <tr>
+      <td>{{product.name}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.proposed_quantity}}</td>
+      <td>{{product.Total_Price}}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>{{totalPrice}}</td>
+    </tr>
+  </table> 
+  
+  <div>
+    <a href="{% url 'menu' %}">
+      <button>Submit</button>
+    </a>
+   
+  </div>
+
+{% endblock %}

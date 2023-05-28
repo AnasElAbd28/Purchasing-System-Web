@@ -1,0 +1,24 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<!-- Adam -->
+<h1>View Quotations</h1>
+<table class="table table-striped">
+  <tr>
+    <td>Quotation ID</td>
+    <td>Quotation Number</td>
+    <td>Creation Date</td>
+    <td>Status</td>
+    <td></td>
+  </tr>
+  {% for quotation in quotation_list %}
+  <tr>
+    <td>{{ quotation.Quotation_ID }}</td>
+    <td>{{ quotation.Quotation_Number }}</td>
+    <td>{{ quotation.Creation_Date }}</td>
+    <td>{% if quotation.status %}Selected{% else %}Not Selected{% endif %}</td>
+    <td><a class="btn btn-primary" href="{% url 'slist_Quotation' quotation.Quotation_ID %}">View</a></td>
+    
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

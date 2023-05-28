@@ -1,0 +1,21 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<!-- Emad -->
+<h1>View Selected Quotations</h1>
+<table class="table table-striped">
+  <tr>
+    <td>Quotation ID</td>
+    <td>Quotation Date</td>
+    <td>Status</td>
+    <td></td>
+  </tr>
+  {% for quotation in quotation_list %}
+  <tr>
+    <td>{{ quotation.Quotation_ID }}</td>
+    <td>{{ quotation.Creation_Date }}</td>
+    <td>{% if quotation.status %}Selected{% else %}Not Selected{% endif %}</td>
+    <td><a class="btn btn-primary" href="{% url 'q' quotation.Quotation_ID %}">View</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

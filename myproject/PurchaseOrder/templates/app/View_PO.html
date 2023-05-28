@@ -1,0 +1,25 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+<!-- Emad -->
+<h1>View PurchaseOrders</h1>
+<table class="table table-striped">
+  <tr>
+    <td>PurchaseOrder ID</td>
+    <td>PurchaseOrder Number</td>
+    <td>Referenced Quotation Number</td>
+    <td>Creation Date</td>
+    <td></td>
+  </tr>
+  {% for purchaseorder in purchaseorder_list %}
+  <tr>
+    <td>{{ purchaseorder.PO_ID }}</td>
+    <td>{{ purchaseorder.Purchaseorder_Number}}</td>
+    <td>{{ purchaseorder.Quotation_Number}}</td>
+    <td>{{ purchaseorder.Creation_Date }}</td>
+    <td><a class="btn btn-primary" href="{% url 'financeOrders' purchaseorder.PO_ID %}">View</a></td>
+    
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

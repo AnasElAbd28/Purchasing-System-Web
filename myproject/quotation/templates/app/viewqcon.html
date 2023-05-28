@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<!-- Anas -->
+<h1>View Quotations</h1>
+<table class="table table-striped">
+  <tr>
+    <td>Quotation ID</td>
+    <td>Quotation Date</td>
+    <td>Status</td>
+    <td></td>
+  </tr>
+  {% for quotation in quotation_list %}
+  <tr>
+    <td>{{ quotation.Quotation_ID }}</td>
+    <td>{{ quotation.Creation_Date }}</td>
+    <td>{% if quotation.status %}Selected{% else %}Not Selected{% endif %}</td>
+    <td><a class="btn btn-primary" href="{% url 'q' quotation.Quotation_ID %}">View</a></td>
+    <td>
+      <form action="{% url 'confirm_change' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="quotation_id" value="{{ quotation.Quotation_ID }}">
+        <input type="hidden" name="change_value" value="True">
+        <button type="submit">Select</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

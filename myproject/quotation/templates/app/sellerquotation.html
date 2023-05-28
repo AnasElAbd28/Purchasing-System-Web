@@ -1,0 +1,37 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<!-- Adam -->
+<h1>Quotation #{{quotation.Quotation_Number}}</h1>
+<h3>Quotation Valid Date: {{quotation.Valid_Date}}</h3>
+<h3>Seller Name: {{seller.seller_name}}</h3>
+<h3>Seller Address: {{seller.seller_address}}</h3>
+
+<table class="table table-striped">
+    <tr>
+      <th>Product ID</th>
+      <th>name</th>
+      <th>price</th>
+      <th>description</th>
+      <th>quantity</th>
+      <th>Total price</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+      <td >{{product.Product_ID}}</td>
+      <td>{{product.name}}</td>
+      <td style="text-align: left;">{{product.price}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.proposed_quantity}}</td>
+      <td style="text-align: left;">{{product.Total_Price}}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td style="text-align: left;">RM{{total}}</td>
+    </tr>
+  </table> 
+{% endblock %}

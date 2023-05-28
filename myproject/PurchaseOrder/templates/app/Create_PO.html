@@ -1,0 +1,94 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+<!-- Emad -->
+
+<h1>Generate Purchase Order</h1>
+
+<div>
+    <form  method="POST" action ="" id="qform">
+        {%csrf_token%}
+        <div>
+          <label>Purchase Order Number</label>
+          {{ purchaseorderform.PurchaseOrder_number}}
+        </div>
+        <div>
+          <label>Referenced Quotation Number</label>
+          {{ purchaseorderform.quotation_Number}}
+        </div>
+        <div>
+          <label>Valid Date</label>
+          {{ purchaseorderform.valid_date}}
+        </div>
+
+        <div>
+          <label>Seller Name</label>
+          {{ purchaseorderform.sellername}}
+        </div>
+
+        <div>
+          <label>Seller Address</label>
+          {{ purchaseorderform.selleraddress}}
+        </div>
+        
+        <div class="form-group row">
+          <div class="col-md-2">
+              <label  class="col-form-label">Product Name</label>
+              {{ purchaseorderform.product_name }}
+          </div>
+          <div class="col-md-2">
+              <label  class="col-form-label">Product Description</label>
+              {{ purchaseorderform.product_description }}
+          </div>
+          <div class="col-md-2">
+              <label class="col-form-label">Product Price</label>
+              {{ purchaseorderform.product_price }}
+          </div>
+          <div class="col-md-2">
+              <label  class="col-form-label">Product Quantity</label>
+              {{ purchaseorderform.product_quantity }}
+          </div>
+          <div class="col-md-2">
+            <input type="submit" form="qform" name="submitButton" value="Add Product">
+          </div>
+      </div>
+    </form>
+</div>
+
+  
+<table class="table table-striped">
+    <tr>
+      <th>name</th>
+      <th>description</th>
+      <th>price</th>
+      <th>quantity</th>
+      <th>Total price</th>
+    </tr>
+
+    {{TotalPrice}}
+    {% for product in products %}
+    <tr>
+      <td>{{product.name}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.proposed_quantity}}</td>
+      <td>{{product.Total_Price}}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>{{totalPrice}}</td>
+    </tr>
+  </table> 
+  
+  <div>
+    <a href="{% url 'menu' %}">
+      <button>Submit</button>
+    </a>
+   
+  </div>
+
+{% endblock %}

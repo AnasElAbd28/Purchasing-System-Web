@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<!-- Emad -->
+<h1>{{products.quotation_id.all}}</h1>
+
+<table class="table table-striped">
+    <tr>
+      <th>Product ID</th>
+      <th>name</th>
+      <th>price</th>
+      <th>description</th>
+      <th>validity date</th>
+      <th>quantity</th>
+      <th>Total price</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+      <td>{{product.Product_ID}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.Valid_Date}}</td>
+      <td>{{product.quantity}}</td>
+      <td>{{product.Total_Price}}</td>
+    </tr>
+    {% endfor %}
+  </table> 
+{% endblock %}

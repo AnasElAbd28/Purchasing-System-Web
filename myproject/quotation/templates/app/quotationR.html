@@ -1,0 +1,35 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<!-- Iskanth -->
+<h1>Quotation Report</h1>
+{% for quotation in quotations %}
+<h2>Quotation #{{ quotation.Quotation_Number }}</h2>
+<h3>Quotation Valid Date: {{quotation.Valid_Date}}</h3>
+<h3>Seller Name: {{quotation.seller_ID.seller_name}}</h3>
+<h3>Seller Address: {{quotation.seller_ID.seller_address}}</h3>
+<table class="table table-striped">
+    <tr>
+        <th>Product ID</th>
+        <th>name</th>
+        <th>price</th>
+        <th>description</th>
+        <th>proposed quantity</th>
+        <th>selected quantity</th>
+        <th>Total price</th>
+    </tr>
+    {% for product in quotation.quotationproduct_set.all %}
+    <tr>
+        <td>{{product.Product_ID}}</td>
+        <td>{{product.name}}</td>
+        <td style="text-align: left;">{{product.price}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.proposed_quantity}}</td>
+        <td>{{product.selected_quantity}}</td>
+        <td style="text-align: left;">{{product.Total_Price}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</ul>
+{% endfor %}
+{% endblock %}

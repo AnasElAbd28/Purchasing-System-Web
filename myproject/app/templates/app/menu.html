@@ -1,0 +1,82 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>
+    <br />
+    {% if is_employee %}
+         <h2>Employee Menu</h2>
+    {% elif is_manager %}
+         <h2>Manager Menu</h2>
+    {% elif is_finance %}
+         <h2>Finance Menu</h2>
+    {% elif is_staff %}
+        <h2>Staff Menu</h2>
+    {% endif %}
+
+    <br />
+    <table>
+    {% if is_staff %}
+        <tr><td>
+            <form class="margintop" action="{% url 'vieWqcon' %}" method='GET'>
+                <button type="submit" class="btn btn-info"> Quotation Management</button><br />
+            </form>
+        </td></tr>
+            
+        
+
+    
+    {% elif is_seller %} 
+    <tr><td>
+        <form class="margintop" action="{% url 'create_quotationID' %}" method='GET'>
+            <button type="submit" class="btn btn-info">Create Quotation</button><br />
+        </form>
+            </td></tr>
+                
+            <tr><td>
+        <form class="margintop" action="{% url 'sview_Quotation' %}" method='GET'>
+            <button type="submit" class="btn btn-outline-info waves-effect">View Quotation</button><br />
+        </form>
+            </td></tr>
+
+    {% elif is_finance %} 
+        <tr><td>
+            <form class="margintop" action="{% url 'viewqsec' %}" method='GET'>
+                <button type="submit" class="btn btn-info">View Selected Quotation</button><br />
+            </form>
+                </td></tr>
+            <tr><td>
+                <form class="margintop" action="{% url 'create_POID' %}" method='GET'>
+                    <button type="submit" class="btn btn-info">Generate Purchase Order</button><br />
+                </form>
+                    </td></tr>
+                        
+                    <tr><td>
+                <form class="margintop" action="{% url 'view_PurchaseOrders' %}"  method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">View PurchaseOrder</button><br />
+                </form>
+                    </td></tr>
+    {% elif is_manager %} 
+            <tr><td>
+                <form class="margintop" action="{% url 'listQ' %}" method='GET'>
+                    <button type="submit" class="btn btn-info">View Quotation Report</button><br />
+                </form>
+            </td></tr>
+                                
+            <tr><td>
+                <form class="margintop" action="{% url 'listPOs' %}"  method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">View Purchase Order Report</button><br />
+                 </form>
+             </td></tr>
+    {% else %}            
+
+        <tr><td>
+            <p>Undefined User.</p>
+        </td></tr>
+            
+    {% endif %}            
+    </table>
+</div>
+
+{% endblock %}
+ 

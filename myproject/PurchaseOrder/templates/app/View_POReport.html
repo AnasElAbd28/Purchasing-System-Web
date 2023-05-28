@@ -1,0 +1,37 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+<!-- Iskanth -->
+<h1>Purchase Order Report</h1>
+{% for purchaseorder in purchaseorders %}
+<h2>Purchase Order #{{ purchaseorder.Purchaseorder_Number }}</h2>
+<h2>Referenced Quotation #{{ purchaseorder.Quotation_Number }}</h2>
+<h3>Purchase Order Valid Date: {{purchaseorder.Valid_Date}}</h3>
+<h3>Seller Name: {{purchaseorder.Seller_Name}}</h3>
+<h3>Seller Address: {{purchaseorder.Seller_Address}}</h3>
+<table class="table table-striped">
+    <tr>
+        <th>Product ID</th>
+        <th>name</th>
+        <th>price</th>
+        <th>description</th>
+        <th>proposed quantity</th>
+        <th>selected quantity</th>
+        <th>Total price</th>
+    </tr>
+    {% for product in purchaseorder.purchaseorderproduct_set.all %}
+    <tr>
+        <td>{{product.Product_ID}}</td>
+        <td>{{product.name}}</td>
+        <td style="text-align: left;">{{product.price}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.proposed_quantity}}</td>
+        <td>{{product.selected_quantity}}</td>
+        <td style="text-align: left;">{{product.Total_Price}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</ul>
+{% endfor %}
+{% endblock %}
